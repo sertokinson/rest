@@ -1,9 +1,6 @@
 package ru.sertok.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -33,5 +30,5 @@ public class User {
     @Column(name = "birthdate")
     private Date birthDate;
     @OneToMany(mappedBy = "user")
-    List<Token> tokens;
+    private List<Token> tokens;
 }

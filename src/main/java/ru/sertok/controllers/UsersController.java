@@ -5,8 +5,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.sertok.models.User;
 import ru.sertok.services.api.UserService;
+import ru.sertok.transfer.UserDto;
 
 import java.util.List;
+
+import static ru.sertok.transfer.UserDto.from;
 
 @RestController
 public class UsersController {
@@ -15,8 +18,8 @@ public class UsersController {
     private UserService userService;
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.findAll();
+    public List<UserDto> getUsers() {
+        return from(userService.findAll());
     }
 
     @PostMapping
