@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -31,4 +32,6 @@ public class User {
 
     @Column(name = "birthdate")
     private Date birthDate;
+    @OneToMany(mappedBy = "user")
+    List<Token> tokens;
 }

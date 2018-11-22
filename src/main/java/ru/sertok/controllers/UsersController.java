@@ -1,10 +1,10 @@
 package ru.sertok.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.sertok.models.User;
-import ru.sertok.repositories.UsersRepository;
+import ru.sertok.services.api.UserService;
 
 import java.util.List;
 
@@ -12,10 +12,16 @@ import java.util.List;
 public class UsersController {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UserService userService;
 
     @GetMapping("/users")
-    public List<User> getUsers(){
-        return usersRepository.findAll();
+    public List<User> getUsers() {
+        return userService.findAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> addUser(@RequestBody User user) {
+        userService.signUp(user);
+        return ResponseEntity.ok().build();
     }
 }
